@@ -7,11 +7,11 @@ body {
     text-align: center;
 }
 
-/* Logo en haut à gauche */
+/* Logo bien positionné en haut à gauche */
 .logo {
-    width: 80px;  /* Taille du logo */
+    width: 60px;  /* Taille ajustée */
     height: auto;
-    position: absolute;
+    position: fixed;  /* Fixé en haut à gauche même en scrollant */
     top: 10px;
     left: 10px;
 }
@@ -23,7 +23,7 @@ header {
     padding: 20px 0;
 }
 
-/* Match container */
+/* Conteneur des matchs */
 #match-scores {
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +31,7 @@ header {
     margin-top: 20px;
 }
 
-/* Carte des matchs */
+/* Carte de match */
 .match-card {
     background-color: white;
     padding: 15px;
