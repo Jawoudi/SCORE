@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { id: 9, team1: "Strasbourg", team2: "Toulouse", score1: 0, score2: 0, date: "2025-03-16", time: "17:15", startTime: null, finished: false, status: "upcoming" },
         { id: 10, team1: "Brest", team2: "Reims", score1: 0, score2: 0, date: "2025-03-16", time: "17:15", startTime: null, finished: false, status: "upcoming" },
         { id: 11, team1: "Kapfenberg", team2: "Voitsberg", score1: 1, score2: 0, date: "2025-03-16", time: "10:35", startTime: null, finished: false, status: "upcoming" },
+        { id: 11, team1: "Bodrum", team2: "Rizepor", score1: 1, score2: 0, date: "2025-03-16", time: "11:30", startTime: null, finished: false, status: "upcoming" },
     ];
 
     const matchScores = document.getElementById("match-scores");
