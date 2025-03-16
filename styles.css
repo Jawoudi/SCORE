@@ -1,116 +1,71 @@
-/* 🌍 Styles généraux */
+/* Style général */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    color: #333;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
-/* 🎨 Conteneur principal */
-#match-scores {
-    width: 90%;
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-/* 🏆 Cartes des matchs */
-.match-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.match-card:hover {
-    transform: scale(1.02);
-}
-
-/* 📅 Date & heure */
-.match-card p {
-    font-size: 14px;
-    color: #777;
-}
-
-/* 🆚 Noms des équipes */
-.team {
-    font-size: 18px;
-    font-weight: bold;
-    color: #222;
-}
-
-/* 🔥 Statut des matchs */
-.status {
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-/* 📌 Couleurs des statuts */
-.status.upcoming {
-    background: #ffcc00;
-    color: #fff;
-}
-
-.status.live {
-    background: #ff3b3b;
-    color: white;
-    animation: blink 1s infinite alternate;
-}
-
-.status.finished {
-    background: #4caf50;
-    color: white;
-}
-
-/* ⏳ Timer pour les matchs en direct */
-.timer {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ff3b3b;
-}
-
-/* 🏆 Menu des meilleurs joueurs */
-#best-players-menu {
-    background: #222;
-    color: white;
-    padding: 20px;
-    margin-top: 30px;
-    text-align: center;
-}
-
-#best-players-menu h2 {
-    margin: 0;
-    font-size: 22px;
-}
-
-/* 📷 Images des joueurs */
-.player-list img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin: 10px;
-    border: 3px solid white;
-}
-
-/* 🏆 Anima
-
-}
-
-#add-player-btn {
-    cursor: pointer;
-}
-
+/* Logo en haut à gauche */
 .logo {
     width: 80px;  /* Taille du logo */
     height: auto;
     position: absolute;
-    top: 10px;  /* Distance du haut */
-    left: 10px; /* Distance de la gauche */
+    top: 10px;
+    left: 10px;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+}
+
+/* Match container */
+#match-scores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Carte des matchs */
+.match-card {
+    background-color: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+/* Score */
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4500;
+}
+
+/* Statut du match */
+.status {
+    font-weight: bold;
+}
+
+.upcoming {
+    color: blue;
+}
+
+.live {
+    color: green;
+}
+
+.half-time {
+    color: orange;
+}
+
+.finished {
+    color: red;
 }
