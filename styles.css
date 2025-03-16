@@ -1,0 +1,73 @@
+/* Général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Section du logo */
+#logo-container {
+    margin-top: 20px;
+}
+
+#logo {
+    width: 100px;
+    height: auto;
+}
+
+/* Section des scores des matchs */
+#match-scores {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.match-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.team {
+    font-weight: bold;
+}
+
+.status.upcoming {
+    color: orange;
+}
+
+.status.live {
+    color: red;
+}
+
+.status.finished {
+    color: gray;
+}
+
+.timer {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Menu des meilleurs joueurs */
+#best-players-menu {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#best-players-menu label {
+    margin-right: 10px;
+}
+
+#player-select {
+    margin-right: 10px;
+}
+
+#add-player-btn {
+    cursor: pointer;
+}
