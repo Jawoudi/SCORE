@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function simulateMatch() {
         matches.forEach(match => {
             if (match.status === "live" && !match.finished) {
-                if (Math.random() < 0.0001) { // 0.01% de chance d’un but
+                if (Math.random() < 0.05) { // 5% de chance toutes les 30 sec (ajusté pour réalisme)
                     let scoringTeam = Math.random() < 0.5 ? "score1" : "score2";
                     match[scoringTeam]++;
                     document.getElementById(`score-${match.id}`).innerText = `${match.score1} - ${match.score2}`;
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function startPenalties(match) {
         const penaltiesDiv = document.getElementById(`penalties-${match.id}`);
         penaltiesDiv.innerHTML = "<h3>Tirs au but</h3>";
-        
+
         let team1Score = 0;
         let team2Score = 0;
         let rounds = 5;
@@ -80,4 +80,26 @@ document.addEventListener("DOMContentLoaded", function() {
             team2Score += shootPenalty(penaltiesDiv, match.team2);
         }
 
-        penaltiesDiv.innerHTML += `<p><strong>Victoire de ${team1Score > team2Score ? match.team1 :
+        penaltiesDiv.innerHTML += `<p><strong>Victoire de ${team1Score > team2Score ? match.team1 : match.team2} !</strong></p>`;
+    }
+
+    function shootPenalty(container, teamName) {
+        const penalty = document.createElement("div");
+        penalty.classList.add("penalty");
+
+        if (Math.random() < 0.5) { // 50% de chance de marquer
+            penalty.classList.add("goal");
+            container.innerHTML += `<p>${teamName} : ✅</p>`;
+            container.appendChild(penalty);
+            return 1;
+        } else {
+            penalty.classList.add("miss");
+            container.innerHTML += `<p>${teamName} : ❌</p>`;
+            container.appendChild(penalty);
+            return 0;
+        }
+    }
+
+    displayMatches();
+    setInterval(updateMatchStatus, 1000);
+    setInterval(simulateMatch, 30
