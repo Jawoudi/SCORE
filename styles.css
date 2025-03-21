@@ -1,72 +1,71 @@
+/* Style général */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    background-color: #181c21;
-    color: white;
+    text-align: center;
 }
 
-.hidden {
-    display: none;
+/* Logo bien positionné en haut à gauche */
+.logo {
+    width: 60px;  /* Taille ajustée */
+    height: auto;
+    position: fixed;  /* Fixé en haut à gauche même en scrollant */
+    top: 10px;
+    left: 10px;
 }
 
+/* Header */
 header {
-    background-color: #263238;
+    background-color: #333;
     color: white;
-    padding: 1rem;
-    text-align: center;
+    padding: 20px 0;
 }
 
-nav a {
-    color: #ffffff;
-    margin: 0 1rem;
-    text-decoration: none;
-}
-
-main {
-    padding: 2rem;
-    text-align: center;
-}
-
-.match-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.match-card {
-    background-color: #263238;
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-button {
-    background-color: #2e7d32;
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #1b5e20;
-}
-
-.welcome-screen {
+/* Conteneur des matchs */
+#match-scores {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    height: 100vh;
-    background-color: #263238;
+    margin-top: 20px;
 }
 
-input {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: none;
+/* Carte de match */
+.match-card {
+    background-color: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+/* Score */
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4500;
+}
+
+/* Statut du match */
+.status {
+    font-weight: bold;
+}
+
+.upcoming {
+    color: blue;
+}
+
+.live {
+    color: green;
+}
+
+.half-time {
+    color: orange;
+}
+
+.finished {
+    color: red;
 }
