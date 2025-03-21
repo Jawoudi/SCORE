@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin Fictif 💸</title>
+    <title>ScoreFoot - Résultats en Direct</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Bitcoin Fictif 💸</h1>
-        <p>Cours actuel : <span id="bitcoin-price">1000</span> $</p>
-        <p>Balance : <span id="balance">1000</span> $</p>
 
-        <canvas id="chart" width="400" height="200"></canvas>
+    <!-- Logo -->
+    <img src="footballminute" alt="Logo ScoreFoot" class="logo">
 
-        <div class="bet-section">
-            <input type="number" id="bet-amount" placeholder="Mise">
-            <button onclick="bet('up')">Parier sur la montée ⬆️</button>
-            <button onclick="bet('down')">Parier sur la descente ⬇️</button>
-        </div>
+    <header>
+        <h1>ScoreFoot - Résultats en Direct ⚽</h1>
+    </header>
 
-        <h3>Historique :</h3>
-        <ul id="history"></ul>
-    </div>
+    <main>
+        <div id="match-scores"></div>
+    </main>
 
     <script src="script.js"></script>
+
 </body>
 </html>
