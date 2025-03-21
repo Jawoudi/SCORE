@@ -1,31 +1,27 @@
 let bitcoinPrice = 1000;
-let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 1000;
-let history = JSON.parse(localStorage.getItem("history")) || [];
+let balance = 1000;
+let lastBetPrice = bitcoinPrice;
+let history = [];
+let chartData = [bitcoinPrice];
+let chartLabels = [0];
+let betPlaced = false;
 
-document.getElementById("bitcoin-price").innerText = bitcoinPrice;
-document.getElementById("balance").innerText = balance;
-
-function updateHistory(message) {
-    history.push(message);
-    localStorage.setItem("history", JSON.stringify(history));
-    const historyList = document.getElementById("history");
-    const li = document.createElement("li");
-    li.textContent = message;
-    historyList.appendChild(li);
-}
-
-function updateBalance(amount) {
-    balance += amount;
-    localStorage.setItem("balance", balance);
-    document.getElementById("balance").innerText = balance;
-}
+const priceElement = document.getElementById("bitcoin-price");
+const balanceElement = document.getElementById("balance");
+const historyElement = document.getElementById("history");
+const canvas = document.getElementById("chart");
+const ctx = canvas.getContext("2d");
 
 function updateBitcoinPrice() {
-    const change = Math.floor(Math.random() * 200 - 100); // Montée ou descente aléatoire
+    const change = Math.floor(Math.random() * 100 - 50); // -50 à +50
     bitcoinPrice += change;
     if (bitcoinPrice < 0) bitcoinPrice = 0;
-    document.getElementById("bitcoin-price").innerText = bitcoinPrice;
-    updateHistory(`Le prix a changé de ${change} $`);
+    priceElement.innerText = bitcoinPrice;
+
+    // Mettre à jour le graphique
+    chartData.push(bitcoinPrice);
+    chartLabels.push(chartLabels.length);
+    drawChart();
 }
 
 function bet(direction) {
@@ -40,29 +36,52 @@ function bet(direction) {
         return;
     }
 
-    const previousPrice = bitcoinPrice;
-    updateBitcoinPrice();
+    if (!betPlaced) {
+        alert("Attends que le cours change avant de parier !");
+        return;
+    }
 
-    if ((direction === "up" && bitcoinPrice > previousPrice) || 
-        (direction === "down" && bitcoinPrice < previousPrice)) {
-        updateBalance(betAmount);
-        updateHistory(`+${betAmount} $ (Gagné)`);
+    if ((direction === "up" && bitcoinPrice > lastBetPrice) || 
+        (direction === "down" && bitcoinPrice < lastBetPrice)) {
+        balance += betAmount;
+        addHistory(`+${betAmount} $ (Gagné)`);
         alert("Gagné !");
     } else {
-        updateBalance(-betAmount);
-        updateHistory(`-${betAmount} $ (Perdu)`);
+        balance -= betAmount;
+        addHistory(`-${betAmount} $ (Perdu)`);
         alert("Perdu !");
     }
+
+    balanceElement.innerText = balance;
+    lastBetPrice = bitcoinPrice;
+    betPlaced = false; // Parier à nouveau seulement après un changement de cours
 }
 
-// Met à jour automatiquement toutes les 3 heures (10800000 ms)
-setInterval(updateBitcoinPrice, 10800000);
+function addHistory(message) {
+    history.push(message);
+    const li = document.createElement("li");
+    li.textContent = message;
+    historyElement.appendChild(li);
+}
 
-// Charger l'historique au démarrage
-window.onload = () => {
-    history.forEach(message => {
-        const li = document.createElement("li");
-        li.textContent = message;
-        document.getElementById("history").appendChild(li);
-    });
-};
+function drawChart() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height - chartData[0] / 10);
+    for (let i = 1; i < chartData.length; i++) {
+        const x = (i / chartLabels.length) * canvas.width;
+        const y = canvas.height - chartData[i] / 10;
+        ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = "#4CAF50";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+}
+
+// Changer le prix toutes les 3 secondes (pour tester) ou 3 heures (10800000 ms)
+setInterval(() => {
+    updateBitcoinPrice();
+    betPlaced = true;
+}, 3000);
+
+drawChart();
