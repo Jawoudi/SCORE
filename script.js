@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function startPenalties(match) {
+        console.log(`Tirs au but pour ${match.team1} vs ${match.team2}`);
         const penaltiesDiv = document.getElementById(`penalties-${match.id}`);
         penaltiesDiv.innerHTML = "<h3>Tirs au but</h3>";
 
@@ -102,4 +103,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     displayMatches();
     setInterval(updateMatchStatus, 1000);
-    setInterval(simulateMatch, 30
+    setInterval(simulateMatch, 30000);
+});
