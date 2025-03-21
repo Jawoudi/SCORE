@@ -1,17 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const matches = [
-        { id: 1, team1: "Paris Saint Germain", team2: "Olympique de Marseille", score1: 0, score2: 0, date: "2025-03-16", time: "20:45", startTime: null, finished: false, status: "upcoming" },
-        { id: 2, team1: "Atlético Madrid", team2: "FC Barcelone", score1: 0, score2: 0, date: "2025-03-16", time: "21:00", startTime: null, finished: false, status: "upcoming" },
-        { id: 3, team1: "Sevilla FC", team2: "Athletic Bilbao", score1: 0, score2: 0, date: "2025-03-16", time: "16:15", startTime: null, finished: false, status: "upcoming" },
-        { id: 4, team1: "Leicester City", team2: "Manchester United", score1: 0, score2: 0, date: "2025-03-16", time: "20:00", startTime: null, finished: false, status: "upcoming" },
-        { id: 5, team1: "Montpellier", team2: "Saint-Étienne", score1: 0, score2: 0, date: "2025-03-16", time: "13:30", startTime: null, finished: false, status: "upcoming" },
-        { id: 6, team1: "Fulham", team2: "Tottenham Hotspur", score1: 0, score2: 0, date: "2025-03-16", time: "14:30", startTime: null, finished: false, status: "upcoming" },
-        { id: 7, team1: "Arsenal", team2: "Chelsea", score1: 0, score2: 0, date: "2025-03-16", time: "14:30", startTime: null, finished: false, status: "upcoming" },
-        { id: 8, team1: "Lyon", team2: "Le Havre", score1: 0, score2: 0, date: "2025-03-16", time: "15:00", startTime: null, finished: false, status: "upcoming" },
-        { id: 9, team1: "Strasbourg", team2: "Toulouse", score1: 0, score2: 0, date: "2025-03-16", time: "17:15", startTime: null, finished: false, status: "upcoming" },
-        { id: 10, team1: "Brest", team2: "Reims", score1: 0, score2: 0, date: "2025-03-16", time: "17:15", startTime: null, finished: false, status: "upcoming" },
-        { id: 11, team1: "Kapfenberg", team2: "Voitsberg", score1: 1, score2: 0, date: "2025-03-16", time: "10:25", startTime: null, finished: false, status: "upcoming" },
-        { id: 12, team1: "Bodrum", team2: "Rizepor", score1: 1, score2: 0, date: "2025-03-16", time: "11:30", startTime: null, finished: false, status: "upcoming" },
+        { id: 1, team1: "Rayan", team2: "Adam.b", score1: 10000, score2: 300, date: "2025-03-07", time: "20:45", startTime: null, finished: false, status: "upcoming" },
+       
     ];
 
     const matchScores = document.getElementById("match-scores");
