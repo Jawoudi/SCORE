@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const matches = [
         { id: 1, team1: "Marignagne", team2: "USM critérium", score1: 0, score2: 0, date: "2025-03-22", time: "15:00", startTime: null, finished: false, status: "upcoming" },
-        { id: 2, team1: "USM", team2: "FC Barcelone", score1: 0, score2: 0, date: "2025-03-21", time: "11:00", startTime: null, finished: false, status: "upcoming" },
+        { id: 2, team1: "USM", team2: "FC Barcelone", score1: 0, score2: 10, date: "2025-03-21", time: "11:00", startTime: null, finished: false, status: "upcoming" },
         { id: 3, team1: "Sevilla FC", team2: "Athletic Bilbao", score1: 0, score2: 0, date: "2025-03-16", time: "16:15", startTime: null, finished: false, status: "upcoming" },
         { id: 4, team1: "Leicester City", team2: "Manchester United", score1: 0, score2: 0, date: "2025-03-16", time: "20:00", startTime: null, finished: false, status: "upcoming" },
         { id: 5, team1: "Montpellier", team2: "Saint-Étienne", score1: 0, score2: 0, date: "2025-03-16", time: "13:30", startTime: null, finished: false, status: "upcoming" },
