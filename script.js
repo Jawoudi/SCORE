@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const matches = [
-        { id: 1, team1: "PSG", team2: "OM", score1: 0, score2: 0, date: "2025-03-21", time: "20:45", startTime: null, finished: false, status: "upcoming", penalties: null },
-        { id: 2, team1: "Real Madrid", team2: "Barcelone", score1: 0, score2: 0, date: "2025-03-21", time: "21:00", startTime: null, finished: false, status: "upcoming", penalties: null }
+        { id: 1, team1: "PSG", team2: "OM", score1: 0, score2: 0, date: "2025-03-21", time: "18:00", startTime: null, finished: false, status: "upcoming", penalties: null },
+        { id: 2, team1: "Real Madrid", team2: "Barcelone", score1: 0, score2: 0, date: "2025-03-21", time: "18:00", startTime: null, finished: false, status: "upcoming", penalties: null }
     ];
 
     const matchScores = document.getElementById("match-scores");
