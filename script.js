@@ -1,47 +1,83 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const username = localStorage.getItem("username");
-    const welcomeScreen = document.getElementById("welcome-screen");
-    const mainHeader = document.getElementById("main-header");
-    const mainContent = document.getElementById("main-content");
-    const usernameDisplay = document.getElementById("username-display");
-
-    if (username) {
-        welcomeScreen.classList.add("hidden");
-        mainHeader.classList.remove("hidden");
-        mainContent.classList.remove("hidden");
-        usernameDisplay.textContent = username;
-    }
-
+document.addEventListener("DOMContentLoaded", function() {
     const matches = [
-        { team1: "PSG", team2: "OM", date: "2025-03-25" },
-        { team1: "Real Madrid", team2: "Barcelone", date: "2025-03-26" },
-        { team1: "Manchester City", team2: "Liverpool", date: "2025-03-27" },
+        { id: 1, team1: "PSG", team2: "OM", score1: 0, score2: 0, date: "2025-03-21", time: "20:45", startTime: null, finished: false, status: "upcoming", penalties: null },
+        { id: 2, team1: "Real Madrid", team2: "Barcelone", score1: 0, score2: 0, date: "2025-03-21", time: "21:00", startTime: null, finished: false, status: "upcoming", penalties: null }
     ];
 
-    const matchesContainer = document.getElementById("matches");
+    const matchScores = document.getElementById("match-scores");
 
-    matches.forEach(match => {
-        const matchCard = document.createElement("div");
-        matchCard.classList.add("match-card");
-        matchCard.innerHTML = `
-            <h3>${match.team1} vs ${match.team2}</h3>
-            <p>Date : ${match.date}</p>
-            <button onclick="predict('${match.team1}', '${match.team2}')">Pronostiquer</button>
-        `;
-        matchesContainer.appendChild(matchCard);
-    });
-});
-
-function saveUsername() {
-    const usernameInput = document.getElementById("username-input").value;
-    if (usernameInput) {
-        localStorage.setItem("username", usernameInput);
-        location.reload();
-    } else {
-        alert("Veuillez entrer un pseudo !");
+    function displayMatches() {
+        matchScores.innerHTML = "";
+        matches.forEach(match => {
+            const matchCard = document.createElement("div");
+            matchCard.classList.add("match-card");
+            matchCard.innerHTML = `
+                <h2>${match.team1} vs ${match.team2}</h2>
+                <p class="score" id="score-${match.id}">${match.score1} - ${match.score2}</p>
+                <p id="status-${match.id}" class="status upcoming">Status: ${match.status}</p>
+                <p id="timer-${match.id}" class="timer"></p>
+                <div id="penalties-${match.id}" class="penalties"></div>
+            `;
+            matchScores.appendChild(matchCard);
+        });
     }
-}
 
-function predict(team1, team2) {
-    alert(`Pronostiquez sur le match ${team1} vs ${team2} !`);
-}
+    function simulateMatch() {
+        matches.forEach(match => {
+            if (match.status === "live" && !match.finished) {
+                if (Math.random() < 0.0001) { // 0.01% de chance d’un but
+                    let scoringTeam = Math.random() < 0.5 ? "score1" : "score2";
+                    match[scoringTeam]++;
+                    document.getElementById(`score-${match.id}`).innerText = `${match.score1} - ${match.score2}`;
+                }
+            }
+        });
+    }
+
+    function updateMatchStatus() {
+        const currentDateTime = new Date();
+        matches.forEach(match => {
+            const matchStatus = document.getElementById(`status-${match.id}`);
+            const matchDateTime = new Date(`${match.date}T${match.time}`);
+
+            if (currentDateTime >= matchDateTime && !match.finished) {
+                if (!match.startTime) match.startTime = matchDateTime;
+                const elapsedTime = (currentDateTime - match.startTime) / 1000;
+
+                if (elapsedTime < 90 * 60) {
+                    match.status = "live";
+                    matchStatus.classList.replace("upcoming", "live");
+                    matchStatus.innerText = "Status: Live";
+                } else {
+                    match.finished = true;
+                    match.status = "finished";
+                    matchStatus.classList.replace("live", "finished");
+                    matchStatus.innerText = "Status: Finished";
+
+                    if (match.score1 === match.score2) {
+                        startPenalties(match);
+                    }
+                }
+            }
+        });
+    }
+
+    function startPenalties(match) {
+        const penaltiesDiv = document.getElementById(`penalties-${match.id}`);
+        penaltiesDiv.innerHTML = "<h3>Tirs au but</h3>";
+        
+        let team1Score = 0;
+        let team2Score = 0;
+        let rounds = 5;
+
+        for (let i = 0; i < rounds; i++) {
+            team1Score += shootPenalty(penaltiesDiv, match.team1);
+            team2Score += shootPenalty(penaltiesDiv, match.team2);
+        }
+
+        while (team1Score === team2Score) { // Mort subite
+            team1Score += shootPenalty(penaltiesDiv, match.team1);
+            team2Score += shootPenalty(penaltiesDiv, match.team2);
+        }
+
+        penaltiesDiv.innerHTML += `<p><strong>Victoire de ${team1Score > team2Score ? match.team1 :
