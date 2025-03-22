@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Streaming</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Anime Streaming</h1>
+
+        <!-- Formulaire de recherche -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher un anime..." onkeyup="searchAnime()">
+            <button id="searchButton">
+                <img class="img" src="loupe-icon.jpg" alt="loupe">
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="sport">
+            <h2>Sport</h2>
+
+            <!-- Conteneur Flexbox pour animes côte à côte -->
+            <div class="anime-container" id="animeList">
+                <!-- Les cartes anime seront générées ici par JavaScript -->
+            </div>
+        </section>
+    </main>
+</body>
+</html>

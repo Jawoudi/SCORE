@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Blue Lock",
+        "image": "blue_lock.jpg",
+        "link": "blue_lock.html"
+    },
+    {
+        "title": "Kuroko's Basket",
+        "image": "kuruko_basket.jpeg",
+        "link": "kuroko_basket.html"
+    },
+    {
+        "title": "Haikyuu!!",
+        "image": "haikyuu.jpg",
+        "link": "haikyuu.html"
+    },
+    {
+        "title": "Captain Tsubasa",
+        "image": "captain_tsubasa.jpg",
+        "link": "captain_tsubasa.html"
+    }
+]
