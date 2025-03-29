@@ -1,1 +1,22 @@
-
+[
+    {
+        "title": "Blue Lock",
+        "image": "blue_lock.jpg",
+        "link": "blue_lock.html"
+    },
+    {
+        "title": "Jujutsu Kaisen S2",
+        "image": "kuruko_basket.jpeg",
+        "link": "jujutsu.html"
+    },
+    {
+        "title": "Blue lock S2 (en cours) ",
+        "image": "blue_lock.jpg",
+        "link": "pas fini.html"
+    },
+    {
+        "title": "Captain Tsubasa",
+        "image": "captain_tsubasa.jpg",
+        "link": "captain_tsubasa.html"
+    }
+]
