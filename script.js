@@ -6,9 +6,9 @@ const animeData = [
         "link": "blue_lock.html"
     },
     {
-        "title": "Kuroko's Basket",
-        "image": "kuruko basket.jpeg",
-        "link": "kuroko_basket.html"
+        "title": "Jujustu Kaisen S2",
+        "image": ".jpeg",
+        "link": "jujutsu.html"
     },
     {
         "title": "Haikyuu!!",
