@@ -49,3 +49,7 @@ button {
     height: auto;
     background-color: transparent;
 }
+.episode img {
+    width: 150px; /* Ajuste selon tes besoins */
+    height: auto;
+}
