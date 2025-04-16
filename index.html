@@ -1,39 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Streaming</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    <link rel="icon" type="image/x-icon" href="/images/Anime.png">
-    <a href="index.html">
-</a>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scores de Football</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <img src="Anime.png" alt="Anime & Manga Logo" width="150">
-        <h1>Anime Streaming</h1>
+  <div class="container">
+    <h1>⚽ Scores de Football en Direct</h1>
+    <div id="scores">Chargement des scores...</div>
+  </div>
 
-        <!-- Formulaire de recherche -->
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Rechercher un anime..." onkeyup="searchAnime()">
-            <button id="searchButton">
-                <img class="img" src="loupe-icon.jpg" alt="loupe">
-            </button>
-        </div>
-    </header>
-
-    <main>
-        <section id="sport">
-            <h2>Sport</h2>
-
-            <!-- Conteneur Flexbox pour animes côte à côte -->
-            <div class="anime-container" id="animeList">
-                <!-- Les cartes anime seront générées ici par JavaScript -->
-            </div>
-        </section>
-    </main>
+  <script src="script.js"></script>
 </body>
 </html>
