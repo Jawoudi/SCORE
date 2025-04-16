@@ -59,4 +59,4 @@ async function getLiveScores() {
 }
 
 getLiveScores();
-setInterval(getLiveScores, 65000); // Rafraîchissement toutes les 1min05
+setInterval(getLiveScores, 300000); // Rafraîchissement toutes les 1min05
