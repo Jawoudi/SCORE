@@ -1,5 +1,5 @@
 const apiKey = 'deac4b05c2d34e0f947459c8d0b03260'; // Ta clé API Football-Data.org
-const apiUrl = 'https://api.football-data.org/v4/matches';
+const apiUrl = 'https://cors-anywhere.herokuapp.com/https://api.football-data.org/v4/matches'; // Ajout du Proxy
 
 async function getLiveScores() {
   try {
@@ -25,7 +25,6 @@ async function getLiveScores() {
         const scoreHome = match.score.fullTime.homeTeam ?? 0;
         const scoreAway = match.score.fullTime.awayTeam ?? 0;
         const status = match.status;
-        const matchId = match.id;
 
         // Carte du match
         const card = document.createElement("div");
@@ -47,14 +46,8 @@ async function getLiveScores() {
         time.className = "match-minute";
         time.textContent = `Statut: ${status}`;
 
-        // Zone des buteurs
-        const scorers = document.createElement("div");
-        scorers.className = "scorers";
-        scorers.innerHTML = `<p>Aucun buteur répertorié pour ce match.</p>`;
-
         card.appendChild(title);
         card.appendChild(time);
-        card.appendChild(scorers);
         scoresDiv.appendChild(card);
       });
     }
