@@ -3,12 +3,11 @@ const baseURL = 'https://cors-anywhere.herokuapp.com/https://api.football-data.o
 
 const scoresDiv = document.getElementById('scores');
 const searchInput = document.getElementById('search');
-
 let allMatches = [];
 
 function getTodayDate() {
   const today = new Date();
-  return today.toISOString().split('T')[0]; // format YYYY-MM-DD
+  return today.toISOString().split('T')[0];
 }
 
 async function getMatchDetails(matchId) {
@@ -32,9 +31,7 @@ async function loadMatches() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     allMatches = data.matches;
-
     displayMatches(allMatches);
-
   } catch (err) {
     console.error("Erreur API :", err);
     scoresDiv.innerHTML = `<p>Erreur : ${err.message}</p>`;
@@ -45,20 +42,17 @@ function displayMatches(matches) {
   scoresDiv.innerHTML = "";
 
   matches.forEach(async (match) => {
-    const card = document.createElement("div");
-    card.className = "match-card";
-
     const home = match.homeTeam.name;
     const away = match.awayTeam.name;
-    const scoreHome = match.score.fullTime.homeTeam ?? 0;
-    const scoreAway = match.score.fullTime.awayTeam ?? 0;
-    const status = match.status;
     const matchId = match.id;
+    const status = match.status;
 
-    // Animation si le match est LIVE
-    if (status === "IN_PLAY") {
-      card.classList.add("live-flash");
-    }
+    // ⚠️ Priorité au score EN COURS ou TEMPS RÉEL
+    const scoreHome = match.score.fullTime.homeTeam ?? match.score.halfTime.homeTeam ?? 0;
+    const scoreAway = match.score.fullTime.awayTeam ?? match.score.halfTime.awayTeam ?? 0;
+
+    const card = document.createElement("div");
+    card.className = "match-card";
 
     const title = document.createElement("div");
     title.className = "teams-row";
@@ -81,17 +75,16 @@ function displayMatches(matches) {
     card.appendChild(scorersDiv);
     scoresDiv.appendChild(card);
 
-    // Détails : minute + buteurs
     const details = await getMatchDetails(matchId);
-    const goals = details?.match?.events?.filter(e => e.type === "GOAL") || [];
+    const events = details?.match?.events || [];
+    const goals = events.filter(e => e.type === "GOAL");
 
     if (goals.length > 0) {
       scorersDiv.innerHTML = "";
       goals.forEach(goal => {
-        const scorer = goal.player.name;
+        const scorer = goal.player.name || "Buteur inconnu";
         const team = goal.team.name;
         const minute = goal.minute;
-
         const goalText = document.createElement("p");
         goalText.innerHTML = `⚽ <strong>${scorer}</strong> (${team}) - ${minute}'`;
         scorersDiv.appendChild(goalText);
@@ -102,6 +95,7 @@ function displayMatches(matches) {
   });
 }
 
+// 🔍 Recherche
 searchInput.addEventListener("input", () => {
   const term = searchInput.value.toLowerCase();
   const filtered = allMatches.filter(match =>
@@ -111,6 +105,6 @@ searchInput.addEventListener("input", () => {
   displayMatches(filtered);
 });
 
-// Auto refresh toutes les 1:05
+// 🔁 Auto-refresh
 loadMatches();
-setInterval(loadMatches, 65000);
+setInterval(loadMatches, 65000); // toutes les 1min05
